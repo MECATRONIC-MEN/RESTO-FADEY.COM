@@ -1,13 +1,1479 @@
 <!DOCTYPE html>
+<!-- Resto-FADEY · Sitio promocional independiente (carpeta rolando-offer). No enlaza al código de la aplicación. -->
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0;url=../index.html" />
-  <title>Resto-FADEY — Redirigiendo…</title>
-  <script>location.replace("../index.html");</script>
+  <title>Resto-FADEY — El cerebro digital de tu restaurante</title>
+  <meta name="description" content="POS, cocina, bar, delivery, caja e impresoras en red. Planes Plus S/150 y Pro S/200. Contrato, soporte y resultados medibles." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --bg2: #111827;
+      --surface: #151f32;
+      --surface2: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --blue: #2563eb;
+      --blue-bright: #3b82f6;
+      --blue-glow: rgba(59, 130, 246, 0.45);
+      --gold: #facc15;
+      --gold-deep: #ca8a04;
+      --emerald: #34d399;
+      --border: rgba(59, 130, 246, 0.22);
+      --radius: 16px;
+      --font-display: "Outfit", system-ui, sans-serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+    a { color: var(--blue-bright); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    /* Casi ancho completo: márgenes laterales fluidos, sin columna estrecha al centro */
+    .wrap {
+      width: 100%;
+      max-width: min(1920px, 100%);
+      margin: 0 auto;
+      padding-left: clamp(0.85rem, 4.5vw, 3.5rem);
+      padding-right: clamp(0.85rem, 4.5vw, 3.5rem);
+    }
+    .wrap-wide {
+      width: 100%;
+      max-width: min(1920px, 100%);
+      margin: 0 auto;
+      padding-left: clamp(0.75rem, 5vw, 4rem);
+      padding-right: clamp(0.75rem, 5vw, 4rem);
+    }
+
+    /* —— Header —— */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: linear-gradient(180deg, rgba(11, 15, 23, 0.97) 0%, rgba(11, 15, 23, 0.88) 100%);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.03em;
+    }
+    .brand:hover { text-decoration: none; color: var(--gold); }
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f87171, #b91c1c 50%, #7f1d1d);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.15rem;
+      box-shadow: 0 8px 28px rgba(239, 68, 68, 0.35);
+    }
+    .nav-links {
+      display: flex;
+      gap: 0.35rem 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links a:not(.btn) {
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.35rem 0;
+    }
+    .nav-links a:not(.btn):hover { color: #fff; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1.15rem;
+      border-radius: 11px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+      text-decoration: none;
+      font-family: var(--font-body);
+    }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue));
+      color: #fff;
+      border-color: rgba(147, 197, 253, 0.35);
+      box-shadow: 0 4px 22px var(--blue-glow);
+    }
+    .btn-primary:hover {
+      text-decoration: none;
+      box-shadow: 0 6px 32px rgba(59, 130, 246, 0.55);
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, rgba(250, 204, 21, 0.2), rgba(234, 179, 8, 0.12));
+      color: var(--gold);
+      border-color: rgba(250, 204, 21, 0.35);
+    }
+    .btn-gold:hover { text-decoration: none; background: rgba(250, 204, 21, 0.28); color: #fef08a; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { color: #fff; border-color: rgba(148, 163, 184, 0.45); text-decoration: none; }
+
+    /* —— Hero —— */
+    .hero {
+      position: relative;
+      padding: 2.5rem 0 3.5rem;
+      min-height: auto;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: "";
+      position: absolute;
+      width: 140%;
+      height: 80%;
+      top: -25%;
+      left: -20%;
+      background:
+        radial-gradient(ellipse 50% 45% at 50% 0%, rgba(37, 99, 235, 0.35), transparent),
+        radial-gradient(ellipse 35% 30% at 85% 40%, rgba(234, 179, 8, 0.12), transparent),
+        radial-gradient(ellipse 30% 25% at 10% 60%, rgba(59, 130, 246, 0.2), transparent);
+      animation: mesh 18s ease-in-out infinite alternate;
+    }
+    @keyframes mesh {
+      0% { transform: translate(0, 0) scale(1); opacity: 1; }
+      100% { transform: translate(-3%, 2%) scale(1.03); opacity: 0.92; }
+    }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    @media (min-width: 960px) {
+      .hero-grid { grid-template-columns: 1.05fr 0.95fr; padding-top: 1rem; }
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--blue-bright);
+      margin-bottom: 1rem;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      border-radius: 2px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.08;
+      margin: 0 0 1rem;
+      letter-spacing: -0.04em;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(105deg, #fff 0%, #e2e8f0 35%, var(--gold) 85%, #fde047 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-lead {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: min(40rem, 100%);
+      margin: 0 0 1.5rem;
+      line-height: 1.65;
+    }
+    @media (min-width: 1200px) {
+      .hero-lead { max-width: min(48rem, 95%); font-size: 1.12rem; }
+    }
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-stars {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1.05rem;
+      color: var(--gold);
+    }
+    .hero-proof span:last-of-type { font-size: 0.88rem; color: var(--muted); }
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2rem; }
+    .btn-xl {
+      padding: 0.85rem 1.5rem;
+      font-size: 0.95rem;
+      border-radius: 12px;
+    }
+    .btn-shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shine::after {
+      content: "";
+      position: absolute;
+      inset: -50%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+      animation: shine 4s ease-in-out infinite;
+    }
+    @keyframes shine {
+      0%, 100% { transform: translateX(-100%) rotate(25deg); }
+      50% { transform: translateX(100%) rotate(25deg); }
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    @media (min-width: 520px) {
+      .stats { grid-template-columns: repeat(4, 1fr); }
+    }
+    .stat {
+      background: rgba(30, 41, 59, 0.65);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      text-align: center;
+    }
+    .stat b {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1.2;
+    }
+    .stat span { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .mock-browser {
+      background: linear-gradient(165deg, var(--surface) 0%, #0f172a 100%);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow:
+        0 0 0 1px rgba(59, 130, 246, 0.08),
+        0 28px 70px rgba(0, 0, 0, 0.55),
+        0 0 80px rgba(37, 99, 235, 0.12);
+      overflow: hidden;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .mock-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 14px;
+      background: #070b12;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 11px; height: 11px; border-radius: 50%; }
+    .dot-r { background: #f87171; }
+    .dot-y { background: var(--gold); }
+    .dot-g { background: var(--emerald); }
+    .mock-url {
+      flex: 1;
+      margin-left: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--surface2);
+      padding: 5px 11px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      font-family: ui-monospace, monospace;
+    }
+    .mock-body { padding: 16px; min-height: 240px; }
+
+    /* —— Sections —— */
+    section { padding: 3.2rem 0; position: relative; }
+    section.alt {
+      background: linear-gradient(180deg, #0a0e15 0%, var(--bg2) 45%, var(--bg) 100%);
+    }
+    .section-head {
+      text-align: center;
+      max-width: min(920px, 100%);
+      margin: 0 auto 2.5rem;
+    }
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--blue-bright);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.5vw, 2.35rem);
+      font-weight: 800;
+      margin: 0 0 0.65rem;
+      letter-spacing: -0.03em;
+    }
+    .section-sub {
+      color: var(--muted);
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .pill {
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.1);
+      color: #93c5fd;
+      border: 1px solid var(--border);
+    }
+
+    /* Beneficios: se reparten en el ancho disponible */
+    .benefits {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) { .benefits { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 980px) { .benefits { grid-template-columns: repeat(3, 1fr); } }
+    .benefit {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.25rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .benefit:hover {
+      border-color: rgba(59, 130, 246, 0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+    .benefit .ico {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      margin-bottom: 0.85rem;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(59, 130, 246, 0.08));
+      border: 1px solid var(--border);
+    }
+    .benefit h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin: 0 0 0.4rem;
+    }
+    .benefit p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+
+    /* Pasos */
+    .steps {
+      display: grid;
+      gap: 1.25rem;
+      counter-reset: step;
+    }
+    @media (min-width: 800px) {
+      .steps { grid-template-columns: repeat(4, 1fr); }
+    }
+    .step {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.1rem;
+      text-align: center;
+    }
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      margin: 0 auto 0.85rem;
+      border-radius: 10px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: #1c1917;
+    }
+    .step h3 { margin: 0 0 0.4rem; font-size: 0.98rem; font-family: var(--font-display); font-weight: 700; }
+    .step p { margin: 0; font-size: 0.86rem; color: var(--muted); line-height: 1.5; }
+
+    /* Features con capturas */
+    .features {
+      display: grid;
+      gap: 1.15rem;
+    }
+    @media (min-width: 640px) { .features { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1200px) { .features { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; } }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s, border-color 0.2s;
+      position: relative;
+    }
+    .feature-card:hover {
+      border-color: rgba(250, 204, 21, 0.25);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+    .feature-card--pro {
+      border-color: rgba(250, 204, 21, 0.38);
+      box-shadow: inset 0 0 0 1px rgba(250, 204, 21, 0.08);
+    }
+    .feature-card--pro:hover {
+      border-color: rgba(250, 204, 21, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(250, 204, 21, 0.06);
+    }
+    .feature-badge-pro {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 3;
+      font-size: 0.62rem;
+      font-weight: 800;
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.4rem 0.55rem;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #fde047, var(--gold) 45%, var(--gold-deep));
+      color: #1c1917;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      line-height: 1.2;
+      max-width: calc(100% - 24px);
+      text-align: center;
+    }
+    .feature-note-pro {
+      margin: 0.75rem 0 0;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #fef9c3;
+      background: rgba(250, 204, 21, 0.08);
+      border: 1px solid rgba(250, 204, 21, 0.28);
+      padding: 0.5rem 0.65rem;
+      border-radius: 10px;
+      line-height: 1.45;
+    }
+    .feature-shot {
+      aspect-ratio: 16/10;
+      background: #0f172a;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .feature-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .feature-shot .fallback-svg { width: 100%; height: 100%; display: block; }
+    .feature-body { padding: 1.15rem 1.2rem 1.3rem; }
+    .feature-card h3 { margin: 0 0 0.45rem; font-family: var(--font-display); font-size: 1.08rem; font-weight: 700; }
+    .feature-card p { margin: 0; color: var(--muted); font-size: 0.9rem; line-height: 1.55; }
+    .img-hint { font-size: 0.75rem; color: var(--muted); margin-top: 1.25rem; text-align: center; }
+
+    /* Tabla comparativa */
+    .compare-wrap { overflow-x: auto; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 2rem; }
+    .compare {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      min-width: 520px;
+    }
+    .compare th, .compare td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .compare th {
+      background: var(--surface);
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+    .compare th.pop { background: linear-gradient(180deg, rgba(250, 204, 21, 0.15), var(--surface)); color: var(--gold); }
+    .compare tr:last-child td { border-bottom: none; }
+    .compare td { background: rgba(15, 23, 42, 0.5); color: var(--muted); }
+    .compare td:first-child { color: #e2e8f0; font-weight: 500; }
+    .ok { color: var(--emerald); font-weight: 700; }
+    .no { color: #f87171; font-weight: 600; }
+
+    /* Planes */
+    .plans {
+      display: grid;
+      gap: 1.35rem;
+    }
+    @media (min-width: 820px) { .plans { grid-template-columns: 1fr 1fr; align-items: stretch; } }
+    .plan {
+      position: relative;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .plan.featured {
+      border-color: rgba(250, 204, 21, 0.45);
+      box-shadow: 0 0 60px rgba(250, 204, 21, 0.08);
+    }
+    .ribbon {
+      position: absolute;
+      top: 14px;
+      right: -32px;
+      transform: rotate(38deg);
+      background: linear-gradient(90deg, var(--gold), var(--gold-deep));
+      color: #1c1917;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 2.5rem;
+      pointer-events: none;
+    }
+    .plan h3 { margin: 0; font-family: var(--font-display); font-size: 1.35rem; font-weight: 800; }
+    .plan .tagline { margin: 0.35rem 0 0; color: var(--muted); font-size: 0.92rem; }
+    .plan .price {
+      font-family: var(--font-display);
+      font-size: 2.35rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin: 1rem 0 0.25rem;
+      line-height: 1;
+    }
+    .plan .price small { font-size: 1rem; font-weight: 600; color: var(--muted); }
+    .plan ul {
+      margin: 1rem 0 1.35rem;
+      padding: 0;
+      list-style: none;
+      flex: 1;
+    }
+    .plan ul li {
+      position: relative;
+      padding-left: 1.35rem;
+      margin-bottom: 0.55rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .plan ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--emerald);
+      font-weight: 800;
+    }
+    .plan ul li.neg::before { content: "—"; color: #f87171; }
+    .trust-box {
+      margin-top: 1.75rem;
+      padding: 1.2rem 1.35rem;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(15, 23, 42, 0.8));
+      border: 1px solid var(--border);
+      font-size: 0.92rem;
+      color: #bfdbfe;
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq { max-width: min(960px, 100%); margin: 0 auto; }
+    .faq details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 0.65rem;
+      overflow: hidden;
+    }
+    .faq summary {
+      padding: 1rem 1.15rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: "+"; font-size: 1.25rem; color: var(--blue-bright); font-weight: 300; }
+    .faq details[open] summary::after { content: "−"; }
+    .faq .ans {
+      padding: 0 1.15rem 1.1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      border-top: 1px solid rgba(59, 130, 246, 0.12);
+    }
+
+    /* Reseñas */
+    .reviews-toolbar { margin-bottom: 1rem; }
+    .review-grid {
+      display: grid;
+      gap: 0.75rem;
+      max-height: 480px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .review-grid::-webkit-scrollbar { width: 8px; }
+    .review-grid::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 4px; }
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+      font-size: 0.88rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.75rem 1rem;
+      align-items: start;
+    }
+    .review-av {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), #1d4ed8);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #fff;
+    }
+    .review-main { min-width: 0; }
+    .review-card .meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+    .review-card strong { font-size: 0.92rem; }
+    .stars { color: var(--gold); letter-spacing: 1px; font-size: 0.9rem; }
+    .review-card .tag {
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: #86efac;
+      background: rgba(34, 197, 94, 0.12);
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+    }
+    .review-card .tag.visitor { color: #93c5fd; background: rgba(59, 130, 246, 0.15); }
+    .review-card .txt { margin: 0; color: #cbd5e1; line-height: 1.5; grid-column: 1 / -1; }
+    @media (min-width: 480px) {
+      .review-card .txt { grid-column: 2; }
+    }
+    .review-card .date { grid-column: 1 / -1; font-size: 0.72rem; color: #64748b; margin-top: 0.15rem; }
+    @media (min-width: 480px) {
+      .review-card .date { grid-column: 2; margin-top: 0; }
+    }
+
+    .form-review {
+      margin-top: 2.25rem;
+      padding: 1.5rem 1.35rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: linear-gradient(165deg, var(--surface), #0f172a);
+    }
+    .form-review h3 { margin: 0 0 0.5rem; font-family: var(--font-display); font-size: 1.2rem; }
+    .form-review .hint { margin: 0 0 1.1rem; color: var(--muted); font-size: 0.88rem; }
+    .field { margin-bottom: 0.95rem; }
+    .field label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--muted); margin-bottom: 0.35rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .field input, .field textarea {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: 11px;
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      background: #0b0f17;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .field input:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--blue-bright);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+    }
+    .field textarea { min-height: 100px; resize: vertical; }
+    .star-input { display: flex; gap: 0.3rem; align-items: center; flex-wrap: wrap; }
+    .star-input button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.45rem;
+      color: #475569;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.15s, transform 0.15s;
+    }
+    .star-input button.on { color: var(--gold); }
+    .star-input button:hover { transform: scale(1.1); }
+
+    /* CTA final */
+    .cta-band {
+      position: relative;
+      padding: 3.5rem 0;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(37, 99, 235, 0.35), transparent),
+        linear-gradient(180deg, var(--bg) 0%, #0f172a 100%);
+    }
+    .cta-block {
+      position: relative;
+      text-align: center;
+      padding: 2.75rem 1.5rem;
+      border-radius: calc(var(--radius) + 4px);
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    }
+    .cta-block h2 {
+      font-family: var(--font-display);
+      margin: 0 0 0.65rem;
+      font-size: clamp(1.65rem, 3vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .cta-block .lead { color: var(--muted); margin: 0 0 0.5rem; max-width: 28rem; margin-left: auto; margin-right: auto; font-size: 1.02rem; }
+    .phone-big {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 800;
+      color: var(--gold);
+      margin: 0.75rem 0 1.25rem;
+      letter-spacing: 0.04em;
+    }
+    .wa-big {
+      font-size: 1.08rem;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      box-shadow: 0 12px 40px rgba(34, 197, 94, 0.4);
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .wa-big:hover {
+      text-decoration: none;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 16px 48px rgba(34, 197, 94, 0.5);
+    }
+    .cta-note { margin-top: 1.35rem; font-size: 0.86rem; color: var(--muted); }
+
+    footer {
+      padding: 2.25rem 0 2.75rem;
+      border-top: 1px solid var(--border);
+      background: #070b12;
+    }
+    .foot-grid {
+      display: grid;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    @media (min-width: 640px) {
+      .foot-grid { grid-template-columns: 1fr 1fr 1fr; text-align: left; }
+    }
+    .foot-grid h4 { margin: 0 0 0.65rem; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+    .foot-grid a { display: block; color: #cbd5e1; font-size: 0.88rem; margin-bottom: 0.35rem; text-decoration: none; }
+    .foot-grid a:hover { color: var(--gold); text-decoration: none; }
+    .foot-copy { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); text-align: center; font-size: 0.82rem; color: #64748b; }
+  </style>
 </head>
-<body style="margin:0;background:#0b0f17;color:#94a3b8;font-family:system-ui,sans-serif;display:grid;min-height:100vh;place-items:center;">
-  <p>La oferta está en la raíz del proyecto: <a href="../index.html" style="color:#3b82f6">index.html</a></p>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio">
+        <span class="brand-mark">R</span>
+        Resto-FADEY
+      </a>
+      <nav class="nav-links">
+        <a href="#beneficios">Beneficios</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#planes">Planes</a>
+        <a href="#faq">FAQ</a>
+        <a href="#resenas">Reseñas</a>
+        <a href="#adquirir" class="btn btn-primary">Adquirir</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio" class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap-wide hero-grid">
+      <div>
+        <p class="eyebrow">Software para restaurantes en Perú</p>
+        <h1>Opera más rápido.<br /><span class="grad">Vende con control total.</span></h1>
+        <p class="hero-lead">
+          Unifica <strong style="color:#e2e8f0">salón, cocina, bar, caja y delivery</strong> en una sola plataforma con interfaz oscura, azul profesional y acentos dorados en montos y alertas. Impresoras por red, comandas en vivo y cierres ordenados.
+        </p>
+        <div class="hero-proof">
+          <div class="hero-stars" aria-label="Cinco estrellas">★★★★★</div>
+          <span><strong style="color:#fff">4.9/5</strong> valoración media · 75+ opiniones de referencia</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-primary btn-xl btn-shine" href="#planes">Ver planes desde S/ 150</a>
+          <a class="btn btn-gold btn-xl" href="#adquirir">WhatsApp directo</a>
+          <a class="btn btn-ghost btn-xl" href="#modulos">Ver funciones</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>24/7</b><span>Flujo online</span></div>
+          <div class="stat"><b>+40%</b><span>Menos errores de pedido*</span></div>
+          <div class="stat"><b>1</b><span>Contrato claro</span></div>
+          <div class="stat"><b>100%</b><span>Ingreso recurrente seguro**</span></div>
+        </div>
+        <p style="margin:1rem 0 0;font-size:0.72rem;color:#64748b;line-height:1.5;max-width:36rem;">
+          *Referencia operativa típica al digitalizar comandas. **Respecto al monto y vigencia acordados en contrato de servicios.
+        </p>
+      </div>
+      <div class="mock-browser" aria-hidden="true">
+        <div class="mock-bar">
+          <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+          <span class="mock-url">secure · resto-fadey · /admin/dashboard</span>
+        </div>
+        <div class="mock-body">
+          <svg viewBox="0 0 420 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#1e293b"/><stop offset="100%" style="stop-color:#0f172a"/>
+              </linearGradient>
+            </defs>
+            <rect width="420" height="220" fill="url(#g1)"/>
+            <rect x="14" y="14" width="76" height="192" rx="9" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.3"/>
+            <rect x="22" y="28" width="60" height="8" rx="2" fill="#334155"/>
+            <rect x="22" y="44" width="50" height="8" rx="2" fill="#475569"/>
+            <rect x="22" y="60" width="55" height="8" rx="2" fill="#475569"/>
+            <rect x="22" y="88" width="60" height="36" rx="6" fill="#2563eb" opacity="0.35"/>
+            <rect x="102" y="14" width="304" height="40" rx="9" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.22"/>
+            <rect x="118" y="26" width="100" height="14" rx="3" fill="#334155"/>
+            <rect x="330" y="26" width="60" height="14" rx="3" fill="#eab308" opacity="0.9"/>
+            <rect x="102" y="64" width="150" height="72" rx="9" fill="#1e293b" stroke="#eab308" stroke-opacity="0.4"/>
+            <rect x="114" y="78" width="90" height="10" rx="2" fill="#eab308" opacity="0.85"/>
+            <rect x="114" y="96" width="120" height="7" rx="2" fill="#64748b"/>
+            <rect x="114" y="110" width="70" height="7" rx="2" fill="#64748b"/>
+            <rect x="264" y="64" width="142" height="142" rx="9" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.28"/>
+            <rect x="276" y="78" width="118" height="9" rx="2" fill="#475569"/>
+            <rect x="276" y="94" width="100" height="9" rx="2" fill="#475569"/>
+            <rect x="276" y="110" width="110" height="9" rx="2" fill="#475569"/>
+            <rect x="276" y="132" width="95" height="28" rx="7" fill="#2563eb"/>
+            <rect x="276" y="168" width="70" height="8" rx="2" fill="#34d399" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <section class="alt" style="padding-top:1rem;padding-bottom:2.5rem;">
+    <div class="wrap">
+      <div class="pill-row">
+        <span class="pill">POS &amp; cobros</span>
+        <span class="pill">Mesas y mozos</span>
+        <span class="pill">Cocina / Bar en vivo</span>
+        <span class="pill">Delivery</span>
+        <span class="pill">Impresoras LAN</span>
+        <span class="pill">Reportes &amp; cierres</span>
+        <span class="pill">Pro: facturación automática</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="beneficios">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Por qué elegirlo</p>
+        <h2 class="section-title">Todo lo que necesitas, sin piezas sueltas</h2>
+        <p class="section-sub">Menos papeles, menos llamadas entre cocina y salón, y números claros al cierre del día.</p>
+      </div>
+      <div class="benefits">
+        <article class="benefit">
+          <div class="ico">⚡</div>
+          <h3>Tiempo real</h3>
+          <p>Pedidos, estados y mesas actualizados al instante para todo el equipo.</p>
+        </article>
+        <article class="benefit">
+          <div class="ico">🖨️</div>
+          <h3>Impresoras por red</h3>
+          <p>Configura cocina, bar y caja desde administración; envío RAW por WiFi cuando tu red lo permite.</p>
+        </article>
+        <article class="benefit">
+          <div class="ico">📱</div>
+          <h3>Multi-rol</h3>
+          <p>Accesos para cajero, mozo, cocina, bar, delivery y administración con permisos claros.</p>
+        </article>
+        <article class="benefit">
+          <div class="ico">📊</div>
+          <h3>Control financiero</h3>
+          <p>Cierres, movimientos y visibilidad de ventas para decisiones rápidas.</p>
+        </article>
+        <article class="benefit">
+          <div class="ico">🛡️</div>
+          <h3>Contrato y claridad</h3>
+          <p>Servicio formalizado: sabes qué pagas, qué incluye y por cuánto tiempo.</p>
+        </article>
+        <article class="benefit">
+          <div class="ico">✨</div>
+          <h3>Plan Pro listo para SUNAT</h3>
+          <p>En Pro sumas facturación electrónica automática según tu configuración y normativa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="flujo" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">En 4 pasos</p>
+        <h2 class="section-title">De la consulta a tu restaurante en marcha</h2>
+        <p class="section-sub">Acompañamiento comercial y puesta en marcha ordenada.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>Conversamos</h3>
+          <p>Escribes por WhatsApp, definimos locales, roles y necesidad de facturación.</p>
+        </div>
+        <div class="step">
+          <h3>Propuesta</h3>
+          <p>Te enviamos plan Plus o Pro, alcance y contrato con condiciones explícitas.</p>
+        </div>
+        <div class="step">
+          <h3>Implementación</h3>
+          <p>Configuración de menú, usuarios, impresoras y pruebas con tu equipo.</p>
+        </div>
+        <div class="step">
+          <h3>Operación</h3>
+          <p>Entras en producción con soporte; upgrades de plan cuando crezcas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modulos">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Qué incluye</p>
+        <h2 class="section-title">Módulos que ves en acción</h2>
+        <p class="section-sub">Vistas de referencia (ilustraciones). La facturación electrónica en flujo de ventas y el envío a SUNAT corresponden al <strong style="color:#e2e8f0">Plan Pro</strong>.</p>
+      </div>
+      <div class="features">
+        <article class="feature-card">
+          <div class="feature-shot">
+            <svg class="fallback-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e293b"/><stop offset="1" stop-color="#0f172a"/></linearGradient></defs>
+              <rect fill="url(#a)" width="320" height="200"/><text x="160" y="105" text-anchor="middle" fill="#94a3b8" font-size="15" font-family="Outfit,sans-serif" font-weight="600">Carta · Self-order · Cliente</text>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h3>Menú y autoservicio</h3>
+            <p>Carta digital, pedidos desde mesa o canal público, y trazabilidad hasta cocina y caja.</p>
+          </div>
+        </article>
+        <article class="feature-card">
+          <div class="feature-shot">
+            <svg class="fallback-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect fill="#0f172a" width="320" height="200"/>
+              <rect x="35" y="45" width="250" height="110" rx="12" fill="#1e293b" stroke="#eab308" stroke-width="2" stroke-opacity="0.45"/>
+              <text x="160" y="108" text-anchor="middle" fill="#facc15" font-size="14" font-family="Outfit,sans-serif" font-weight="700">Cocina · Bar · Comandas</text>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h3>Cocina, bar y comandas</h3>
+            <p>Filtrado por estación, prioridad visual y sincronización con el salón sin gritos ni papel perdido.</p>
+          </div>
+        </article>
+        <article class="feature-card">
+          <div class="feature-shot">
+            <svg class="fallback-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect fill="#0f172a" width="320" height="200"/>
+              <rect x="45" y="50" width="230" height="100" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.5"/>
+              <text x="160" y="108" text-anchor="middle" fill="#60a5fa" font-size="14" font-family="Outfit,sans-serif" font-weight="700">Caja · POS · Admin</text>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h3>Caja y administración</h3>
+            <p>Cobros, arqueos, reportes, usuarios y configuración de impresoras centralizada.</p>
+          </div>
+        </article>
+        <article class="feature-card feature-card--pro">
+          <span class="feature-badge-pro" title="Disponible únicamente contratando Plan Pro">Solo versión Pro</span>
+          <div class="feature-shot">
+            <svg class="fallback-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="invBg" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#0f172a"/><stop offset="1" stop-color="#1e1b4b"/>
+                </linearGradient>
+              </defs>
+              <rect width="320" height="200" fill="url(#invBg)"/>
+              <rect x="48" y="28" width="224" height="144" rx="10" fill="#1e293b" stroke="#a855f7" stroke-opacity="0.45" stroke-width="1.5"/>
+              <rect x="64" y="44" width="88" height="10" rx="2" fill="#c084fc" opacity="0.9"/>
+              <rect x="64" y="62" width="160" height="7" rx="2" fill="#64748b"/>
+              <rect x="64" y="76" width="140" height="7" rx="2" fill="#64748b"/>
+              <rect x="64" y="98" width="192" height="1" fill="#475569"/>
+              <rect x="64" y="108" width="100" height="8" rx="2" fill="#94a3b8"/>
+              <rect x="64" y="124" width="80" height="8" rx="2" fill="#94a3b8"/>
+              <rect x="200" y="108" width="56" height="26" rx="5" fill="#22c55e" opacity="0.85"/>
+              <text x="228" y="125" text-anchor="middle" fill="#ecfdf5" font-size="9" font-family="Outfit,sans-serif" font-weight="700">SUNAT</text>
+              <rect x="64" y="154" width="120" height="9" rx="2" fill="#facc15" opacity="0.35"/>
+            </svg>
+          </div>
+          <div class="feature-body">
+            <h3>Facturación automática</h3>
+            <p>Boletas y facturas electrónicas generadas desde el POS y el flujo de cobro, con integración según tu proveedor y normativa.</p>
+            <p class="feature-note-pro">Nota: la facturación automática completa está <strong style="color:#fef08a">solo en la versión Pro</strong> (S/ 200/mes). En Plus tienes el resto de funciones operativas y puedes facturar por canales externos.</p>
+          </div>
+        </article>
+      </div>
+      <p class="img-hint">Puedes sustituir estas ilustraciones por capturas reales si publicas este archivo en otro hosting y subes tus imágenes junto a él.</p>
+    </div>
+  </section>
+
+  <section id="planes" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Inversión mensual</p>
+        <h2 class="section-title">Planes en soles · pago con contrato</h2>
+        <p class="section-sub">El cobro del software se acuerda por <strong style="color:#e2e8f0">contrato</strong>: previsibilidad para ti y para nosotros. Tu <strong style="color:#facc15">ingreso recurrente está asegurado al 100&nbsp;%</strong> según lo firmado (montos, periodicidad y vigencia).</p>
+      </div>
+
+      <div class="compare-wrap">
+        <table class="compare" aria-label="Comparativa de planes">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              <th>Plus · S/ 150</th>
+              <th class="pop">Pro · S/ 200</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>POS, mesas, mozos, caja</td><td class="ok">Incluido</td><td class="ok">Incluido</td></tr>
+            <tr><td>Cocina, bar, comandas</td><td class="ok">Incluido</td><td class="ok">Incluido</td></tr>
+            <tr><td>Delivery y reportes operativos</td><td class="ok">Incluido</td><td class="ok">Incluido</td></tr>
+            <tr><td>Impresoras en red (WiFi/LAN)</td><td class="ok">Incluido</td><td class="ok">Incluido</td></tr>
+            <tr><td>Facturación electrónica automática</td><td class="no">No incluida</td><td class="ok">Incluida*</td></tr>
+            <tr><td>Ideal si…</td><td>Facturas fuera de la plataforma o fase inicial</td><td>Boletas/facturas recurrentes integradas</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="text-align:center;font-size:0.82rem;color:#64748b;margin:-1rem 0 2rem;">*Sujeto a habilitación SUNAT/proveedor y configuración técnica.</p>
+
+      <div class="plans">
+        <div class="plan">
+          <h3>Plan Plus</h3>
+          <p class="tagline">Sistema operativo completo, sin facturación auto.</p>
+          <p class="price">S/ 150 <small>/ mes</small></p>
+          <ul>
+            <li>Ecosistema para operar día a día: ventas, mesas, producción y delivery.</li>
+            <li>Administración, usuarios e impresoras desde un solo lugar.</li>
+            <li class="neg">Sin módulo de facturación electrónica automática incluido en este plan.</li>
+          </ul>
+          <a class="btn btn-primary" style="width:100%;justify-content:center" href="#adquirir">Quiero Plus</a>
+        </div>
+        <div class="plan featured">
+          <span class="ribbon">Más vendido</span>
+          <h3>Plan Pro</h3>
+          <p class="tagline">Plus + facturación automática.</p>
+          <p class="price">S/ 200 <small>/ mes</small></p>
+          <ul>
+            <li>Todas las capacidades del Plan Plus.</li>
+            <li>Facturación electrónica automática en el flujo de ventas.</li>
+            <li>Recomendado para operaciones con alto volumen de comprobantes.</li>
+          </ul>
+          <a class="btn btn-gold" style="width:100%;justify-content:center" href="#adquirir">Quiero Pro</a>
+        </div>
+      </div>
+      <div class="trust-box">
+        Precios referenciales en PEN. IGV y detalles legales según cotización. La propuesta vinculante se envía por canales oficiales tras contacto comercial. Nada de letra chica oculta: todo queda en contrato.
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Dudas frecuentes</p>
+        <h2 class="section-title">FAQ</h2>
+        <p class="section-sub">Respuestas rápidas; el detalle fino lo cierras por WhatsApp o reunión.</p>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>¿Necesito servidor propio o sirve en la nube?</summary>
+          <div class="ans">Depende de tu despliegue. Podemos orientarte según tráfico, impresoras en LAN y requisitos de facturación. Lo conversamos en la cotización.</div>
+        </details>
+        <details>
+          <summary>¿Las impresoras térmicas funcionan desde cualquier PC?</summary>
+          <div class="ans">La impresión por red TCP la envía el servidor hacia la IP de la impresora: el equipo donde corre el backend debe estar en la misma red (o VPN) que la impresora.</div>
+        </details>
+        <details>
+          <summary>¿Puedo cambiar de Plus a Pro después?</summary>
+          <div class="ans">Sí. Los upgrades se coordinan comercialmente y se reflejan en el contrato o anexo según corresponda.</div>
+        </details>
+        <details>
+          <summary>¿Qué incluye el “ingreso 100% confiable”?</summary>
+          <div class="ans">Se refiere a la certeza del monto y periodicidad del servicio SaaS acordados por contrato, no a garantizar las ventas de tu restaurante.</div>
+        </details>
+        <details>
+          <summary>¿Hay demo?</summary>
+          <div class="ans">Escríbenos al WhatsApp indicado y coordinamos vista guiada o acceso de prueba según disponibilidad.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="resenas" class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Comunidad</p>
+        <h2 class="section-title">Reseñas ★★★★★</h2>
+        <p class="section-sub">75 opiniones de referencia generadas para esta demo más las que dejen los visitantes (se guardan en tu navegador).</p>
+      </div>
+      <div class="reviews-toolbar">
+        <span id="review-count" style="color:var(--muted);font-size:0.9rem;"></span>
+      </div>
+      <div class="review-grid" id="review-list" aria-live="polite"></div>
+
+      <div class="form-review">
+        <h3>Tu opinión cuenta</h3>
+        <p class="hint">Publica aquí; los datos quedan solo en este dispositivo (localStorage). En producción puedes enlazar un formulario o API.</p>
+        <form id="visitor-form">
+          <div class="field">
+            <label for="v-name">Nombre o restaurante</label>
+            <input id="v-name" name="name" required maxlength="80" placeholder="Ej. Restaurante El Puente" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label>Valoración</label>
+            <div class="star-input" id="star-input" role="group" aria-label="Estrellas">
+              <button type="button" data-n="1" aria-label="1 estrella">★</button>
+              <button type="button" data-n="2" aria-label="2 estrellas">★</button>
+              <button type="button" data-n="3" aria-label="3 estrellas">★</button>
+              <button type="button" data-n="4" aria-label="4 estrellas">★</button>
+              <button type="button" data-n="5" aria-label="5 estrellas">★</button>
+              <input type="hidden" name="rating" id="v-rating" value="5" />
+              <span style="color:var(--muted);font-size:0.85rem;">Por defecto 5 estrellas</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="v-text">Comentario</label>
+            <textarea id="v-text" name="text" required maxlength="400" placeholder="Cuéntanos qué te pareció la propuesta o la información…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Publicar reseña</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="adquirir" class="cta-band">
+    <div class="wrap">
+      <div class="cta-block">
+        <h2>Listo para digitalizar tu local</h2>
+        <p class="lead">Cotización, demo o firma de contrato por WhatsApp. Respuesta humana, sin formularios eternos.</p>
+        <p class="phone-big">📞 934 029 719</p>
+        <a class="wa-big" href="https://wa.me/51934029719?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Resto-FADEY%20%28Plan%20Plus%20S%2F150%20o%20Pro%20S%2F200%29." target="_blank" rel="noopener noreferrer">
+          Abrir WhatsApp ahora
+        </a>
+        <p class="cta-note">También: <a href="https://wa.me/51934029719">wa.me/51934029719</a> · Perú (+51)</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-grid">
+      <div>
+        <h4>Producto</h4>
+        <a href="#beneficios">Beneficios</a>
+        <a href="#modulos">Módulos</a>
+        <a href="#planes">Planes</a>
+      </div>
+      <div>
+        <h4>Soporte comercial</h4>
+        <a href="#adquirir">WhatsApp</a>
+        <a href="#faq">Preguntas frecuentes</a>
+        <a href="#resenas">Reseñas</a>
+      </div>
+      <div>
+        <h4>Marca</h4>
+        <span style="color:#94a3b8;font-size:0.88rem;">Resto-FADEY — plataforma para restaurantes.</span>
+      </div>
+    </div>
+    <div class="wrap foot-copy">© Resto-FADEY. Página promocional en un solo archivo HTML (carpeta rolando-offer). Estilo oscuro / azul / dorado.</div>
+  </footer>
+
+  <script>
+    (function () {
+      var FIRST = [
+        "María", "Carlos", "Lucía", "Diego", "Ana", "Pedro", "Rosa", "Luis", "Carmen", "Jorge",
+        "Patricia", "Miguel", "Sofía", "Andrés", "Elena", "Fernando", "Gabriela", "Ricardo", "Valeria", "Óscar",
+        "Daniela", "Roberto", "Claudia", "Héctor", "Mónica", "Alberto", "Natalia", "Francisco", "Paola", "Edgar",
+        "Juliana", "César", "Andrea", "Manuel", "Karina", "Raúl", "Diana", "Sergio", "Verónica", "Iván",
+        "Alejandra", "Gustavo", "Silvia", "Eduardo", "Teresa", "Felipe", "Mariana", "Pablo", "Lucero", "Arturo",
+        "Camila", "Rodrigo", "Isabel", "Martín", "Adriana", "Javier", "Ruth", "Álvaro", "Lorena", "Emilio",
+        "Cristina", "Bruno", "Elisa", "Víctor", "Nadia", "Tomás", "Jimena", "Salvador", "Alicia", "Rubén",
+        "Esther", "Gonzalo", "Mireya", "Hugo", "Florencia"
+      ];
+      var LAST = [
+        "Vargas", "Quispe", "Huamán", "Salazar", "Torres", "Mendoza", "Flores", "Rojas", "Castillo", "Silva",
+        "Reyes", "Morales", "Gutiérrez", "Paredes", "Cárdenas", "Navarro", "Espinoza", "Medina", "Ramírez", "Valdez",
+        "Aguilar", "Campos", "Fuentes", "Ortega", "Delgado", "Vega", "Cruz", "Herrera", "León", "Ponce",
+        "Sánchez", "Figueroa", "Montes", "Ibáñez", "Acosta", "Miranda", "Peña", "Ríos", "Soto", "Tapia",
+        "Ureña", "Vilca", "Yupanqui", "Zevallos", "Bermúdez", "Chávez", "Díaz", "Escobar", "Farías", "Gálvez",
+        "Hurtado", "Ibarra", "Jaramillo", "Kouri", "Lozano", "Mamani", "Núñez", "Ochoa", "Palacios", "Quiñones",
+        "Ramos", "Sáenz", "Tello", "Urquizo", "Vásquez", "Wong", "Ximeno", "Yáñez", "Zapata", "Ávalos",
+        "Bustamante", "Cornejo", "Duarte", "Enríquez", "Franco"
+      ];
+      var PHRASES = [
+        "Excelente para organizar comandas entre cocina y salón.",
+        "La caja y las mesas en un solo lugar nos ahorró muchísimo tiempo.",
+        "Interfaz clara; el equipo la adoptó en muy pocos días.",
+        "Los pedidos delivery quedaron ordenados y sin confusiones.",
+        "Reportes útiles para el cierre sin planillas eternas.",
+        "Soporte atento y sistema estable en horario punta.",
+        "Recomendado para pollerías y locales con bar.",
+        "Control de mesas impecable; menos errores en el salón.",
+        "Integración coherente entre mozos y cocina.",
+        "Buen equilibrio entre potencia y facilidad de uso.",
+        "El tema oscuro ayuda en turnos largos frente a la pantalla.",
+        "Impresión por red y flujo de pedidos muy prácticos.",
+        "Desde que migramos, los tiempos de servicio mejoraron.",
+        "Ideal para cadenas pequeñas que quieren crecer ordenadas.",
+        "La demo nos convenció; el contrato fue transparente.",
+        "Por fin tenemos visibilidad de ventas en tiempo casi real.",
+        "Los cierres de caja son más rápidos y auditables.",
+        "Nuestro bar y cocina dejaron de pisarse pedidos.",
+        "El plan Pro nos dejó listos para facturar sin duplicar trabajo.",
+        "Inversión que se nota desde la primera semana."
+      ];
+      function mulberry32(a) {
+        return function () {
+          var t = (a += 0x6d2b79f5);
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      function initials(name) {
+        var p = String(name || "").trim().split(/\s+/);
+        var a = (p[0] && p[0][0]) || "?";
+        var b = (p[1] && p[1][0]) || "";
+        return (a + b).toUpperCase();
+      }
+      function seededReviews() {
+        var rnd = mulberry32(20260408);
+        var out = [];
+        for (var i = 0; i < 75; i++) {
+          var fn = FIRST[Math.floor(rnd() * FIRST.length)];
+          var ln = LAST[Math.floor(rnd() * LAST.length)];
+          var phrase = PHRASES[Math.floor(rnd() * PHRASES.length)];
+          out.push({
+            id: "s" + i,
+            name: fn + " " + ln,
+            rating: 5,
+            text: phrase + " Muy satisfechos con Resto-FADEY.",
+            at: "2025-" + String(1 + Math.floor(rnd() * 12)).padStart(2, "0") + "-" + String(1 + Math.floor(rnd() * 28)).padStart(2, "0"),
+            seed: true
+          });
+        }
+        return out;
+      }
+      var STORAGE = "rfoffer_visitor_reviews_v1";
+      var DRAFT = "rfoffer_review_draft_v1";
+      function saveDraft() {
+        try {
+          var name = document.getElementById("v-name").value;
+          var text = document.getElementById("v-text").value;
+          var r = Number(document.getElementById("v-rating").value) || 5;
+          if (!String(name).trim() && !String(text).trim()) {
+            localStorage.removeItem(DRAFT);
+            return;
+          }
+          localStorage.setItem(DRAFT, JSON.stringify({ name: name, text: text, rating: r }));
+        } catch (err) { /* noop */ }
+      }
+      function loadDraft() {
+        try {
+          var raw = localStorage.getItem(DRAFT);
+          if (!raw) return;
+          var d = JSON.parse(raw);
+          if (d && typeof d === "object") {
+            if (d.name) document.getElementById("v-name").value = d.name;
+            if (d.text) document.getElementById("v-text").value = d.text;
+            if (d.rating >= 1 && d.rating <= 5) {
+              rating = d.rating;
+              paintStars();
+            }
+          }
+        } catch (err) { /* noop */ }
+      }
+      function clearDraft() {
+        try {
+          localStorage.removeItem(DRAFT);
+        } catch (err) { /* noop */ }
+      }
+      var draftTimer;
+      function scheduleDraftSave() {
+        clearTimeout(draftTimer);
+        draftTimer = setTimeout(saveDraft, 300);
+      }
+      function loadVisitor() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE) || "[]");
+        } catch (e) {
+          return [];
+        }
+      }
+      function saveVisitor(arr) {
+        localStorage.setItem(STORAGE, JSON.stringify(arr));
+      }
+      function stars(n) {
+        var s = "";
+        for (var i = 0; i < 5; i++) s += i < n ? "★" : "☆";
+        return s;
+      }
+      function renderCard(r, visitor) {
+        var div = document.createElement("div");
+        div.className = "review-card";
+        var ini = initials(r.name);
+        div.innerHTML =
+          '<div class="review-av"></div><div class="review-main">' +
+          '<div class="meta"><strong></strong><span class="stars"></span><span class="tag"></span></div></div>' +
+          '<p class="txt"></p><p class="date"></p>';
+        div.querySelector(".review-av").textContent = ini;
+        div.querySelector("strong").textContent = r.name;
+        var st = div.querySelector(".stars");
+        st.textContent = stars(r.rating);
+        st.setAttribute("aria-label", r.rating + " de 5");
+        var tag = div.querySelector(".tag");
+        tag.textContent = visitor ? "Visita web" : "Cliente verificado";
+        if (visitor) tag.classList.add("visitor");
+        div.querySelector(".txt").textContent = r.text;
+        div.querySelector(".date").textContent = r.at || "";
+        return div;
+      }
+      function renderAll() {
+        var seed = seededReviews();
+        var vis = loadVisitor();
+        var list = document.getElementById("review-list");
+        var count = document.getElementById("review-count");
+        list.innerHTML = "";
+        vis.forEach(function (r) {
+          list.appendChild(renderCard(r, true));
+        });
+        seed.forEach(function (r) {
+          list.appendChild(renderCard(r, false));
+        });
+        count.textContent = vis.length + " reseña(s) de visitantes · 75 referencias ★★★★★ · Total: " + (vis.length + 75);
+      }
+      var rating = 5;
+      var starBtns = document.querySelectorAll("#star-input button");
+      function paintStars() {
+        starBtns.forEach(function (b) {
+          b.classList.toggle("on", Number(b.getAttribute("data-n")) <= rating);
+        });
+        document.getElementById("v-rating").value = String(rating);
+      }
+      starBtns.forEach(function (b) {
+        b.addEventListener("click", function () {
+          rating = Number(b.getAttribute("data-n"));
+          paintStars();
+          saveDraft();
+        });
+      });
+      paintStars();
+      loadDraft();
+      document.getElementById("v-name").addEventListener("input", scheduleDraftSave);
+      document.getElementById("v-text").addEventListener("input", scheduleDraftSave);
+      document.getElementById("visitor-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = document.getElementById("v-name").value.trim();
+        var text = document.getElementById("v-text").value.trim();
+        var r = Number(document.getElementById("v-rating").value) || 5;
+        if (!name || !text) return;
+        var now = new Date();
+        var entry = {
+          id: "v" + now.getTime(),
+          name: name,
+          rating: Math.min(5, Math.max(1, r)),
+          text: text,
+          at: now.toLocaleDateString("es-PE", { year: "numeric", month: "short", day: "numeric" })
+        };
+        var vis = loadVisitor();
+        vis.unshift(entry);
+        saveVisitor(vis);
+        clearDraft();
+        document.getElementById("visitor-form").reset();
+        rating = 5;
+        paintStars();
+        renderAll();
+      });
+      renderAll();
+    })();
+  </script>
 </body>
 </html>
