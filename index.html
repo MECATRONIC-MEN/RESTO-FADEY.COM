@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Resto-FADEY — El cerebro digital de tu restaurante</title>
   <meta name="description" content="POS, cocina, bar, delivery, caja e impresoras en red. Planes Plus S/150 y Pro S/200. Contrato, soporte y resultados medibles." />
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -94,12 +96,9 @@
       width: 42px;
       height: 42px;
       border-radius: 12px;
-      background: linear-gradient(135deg, #f87171, #b91c1c 50%, #7f1d1d);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      color: #fff;
-      font-size: 1.15rem;
+      display: block;
+      object-fit: cover;
+      flex-shrink: 0;
       box-shadow: 0 8px 28px rgba(239, 68, 68, 0.35);
     }
     .nav-links {
@@ -854,7 +853,7 @@
   <header>
     <div class="wrap nav">
       <a class="brand" href="#inicio">
-        <span class="brand-mark">R</span>
+        <img class="brand-mark" src="logo.svg" width="42" height="42" alt="" decoding="async" />
         Resto-FADEY
       </a>
       <nav class="nav-links">
@@ -1027,10 +1026,7 @@
       <div class="features">
         <article class="feature-card">
           <div class="feature-shot">
-            <svg class="fallback-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <defs><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1e293b"/><stop offset="1" stop-color="#0f172a"/></linearGradient></defs>
-              <rect fill="url(#a)" width="320" height="200"/><text x="160" y="105" text-anchor="middle" fill="#94a3b8" font-size="15" font-family="Outfit,sans-serif" font-weight="600">Carta · Self-order · Cliente</text>
-            </svg>
+            <img src="menu%20y%20autoservicio.jpeg" alt="Captura: menú y autoservicio (carta, self-order, cliente)" width="640" height="400" loading="lazy" decoding="async" />
           </div>
           <div class="feature-body">
             <h3>Menú y autoservicio</h3>
@@ -1039,11 +1035,7 @@
         </article>
         <article class="feature-card">
           <div class="feature-shot">
-            <svg class="fallback-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect fill="#0f172a" width="320" height="200"/>
-              <rect x="35" y="45" width="250" height="110" rx="12" fill="#1e293b" stroke="#eab308" stroke-width="2" stroke-opacity="0.45"/>
-              <text x="160" y="108" text-anchor="middle" fill="#facc15" font-size="14" font-family="Outfit,sans-serif" font-weight="700">Cocina · Bar · Comandas</text>
-            </svg>
+            <img src="cocina%20bar%20y%20comandas.png" alt="Captura: cocina, bar y comandas" width="640" height="400" loading="lazy" decoding="async" />
           </div>
           <div class="feature-body">
             <h3>Cocina, bar y comandas</h3>
@@ -1052,11 +1044,7 @@
         </article>
         <article class="feature-card">
           <div class="feature-shot">
-            <svg class="fallback-svg" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect fill="#0f172a" width="320" height="200"/>
-              <rect x="45" y="50" width="230" height="100" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2" stroke-opacity="0.5"/>
-              <text x="160" y="108" text-anchor="middle" fill="#60a5fa" font-size="14" font-family="Outfit,sans-serif" font-weight="700">Caja · POS · Admin</text>
-            </svg>
+            <img src="caja%20pos%20admin.png" alt="Captura: caja, POS y administración" width="640" height="400" loading="lazy" decoding="async" />
           </div>
           <div class="feature-body">
             <h3>Caja y administración</h3>
@@ -1092,7 +1080,7 @@
           </div>
         </article>
       </div>
-      <p class="img-hint">Puedes sustituir estas ilustraciones por capturas reales si publicas este archivo en otro hosting y subes tus imágenes junto a él.</p>
+      <p class="img-hint">Publica en GitHub Pages la carpeta completa: <code>index.html</code>, <code>logo.svg</code> y las tres capturas (mismos nombres de archivo que en tu disco).</p>
     </div>
   </section>
 
