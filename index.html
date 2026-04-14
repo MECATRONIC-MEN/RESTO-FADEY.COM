@@ -296,6 +296,7 @@
     .stat span { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
 
     .mock-browser {
+      margin: 0;
       background: linear-gradient(165deg, var(--surface) 0%, #0f172a 100%);
       border-radius: var(--radius);
       border: 1px solid var(--border);
@@ -334,6 +335,40 @@
       font-family: ui-monospace, monospace;
     }
     .mock-body { padding: 16px; min-height: 240px; }
+    .mock-body--hero-illu {
+      padding: 10px 12px 12px;
+      min-height: 0;
+    }
+    .hero-vista-sistema {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(59, 130, 246, 0.22);
+      background: #0f172a;
+      aspect-ratio: 16 / 9;
+      max-height: min(380px, 52vw);
+    }
+    .hero-vista-sistema img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    @media (max-width: 959px) {
+      .hero-vista-sistema { max-height: min(300px, 58vw); }
+    }
+    @media (max-width: 520px) {
+      .hero-vista-sistema { max-height: 260px; aspect-ratio: 4 / 3; }
+    }
+    .hero-shot-note {
+      margin: 0;
+      font-size: 0.68rem;
+      color: #64748b;
+      line-height: 1.45;
+      text-align: center;
+      padding: 0.35rem 12px 10px;
+    }
 
     /* —— Sections —— */
     section { padding: 3.2rem 0; position: relative; }
@@ -910,40 +945,18 @@
           *Referencia operativa típica al digitalizar comandas. **Respecto al monto y vigencia acordados en contrato de servicios.
         </p>
       </div>
-      <div class="mock-browser" aria-hidden="true">
+      <figure class="mock-browser">
         <div class="mock-bar">
           <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-          <span class="mock-url">secure · resto-fadey · /admin/dashboard</span>
+          <span class="mock-url">secure · resto-fadey · /admin</span>
         </div>
-        <div class="mock-body">
-          <svg viewBox="0 0 420 220" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#1e293b"/><stop offset="100%" style="stop-color:#0f172a"/>
-              </linearGradient>
-            </defs>
-            <rect width="420" height="220" fill="url(#g1)"/>
-            <rect x="14" y="14" width="76" height="192" rx="9" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.3"/>
-            <rect x="22" y="28" width="60" height="8" rx="2" fill="#334155"/>
-            <rect x="22" y="44" width="50" height="8" rx="2" fill="#475569"/>
-            <rect x="22" y="60" width="55" height="8" rx="2" fill="#475569"/>
-            <rect x="22" y="88" width="60" height="36" rx="6" fill="#2563eb" opacity="0.35"/>
-            <rect x="102" y="14" width="304" height="40" rx="9" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.22"/>
-            <rect x="118" y="26" width="100" height="14" rx="3" fill="#334155"/>
-            <rect x="330" y="26" width="60" height="14" rx="3" fill="#eab308" opacity="0.9"/>
-            <rect x="102" y="64" width="150" height="72" rx="9" fill="#1e293b" stroke="#eab308" stroke-opacity="0.4"/>
-            <rect x="114" y="78" width="90" height="10" rx="2" fill="#eab308" opacity="0.85"/>
-            <rect x="114" y="96" width="120" height="7" rx="2" fill="#64748b"/>
-            <rect x="114" y="110" width="70" height="7" rx="2" fill="#64748b"/>
-            <rect x="264" y="64" width="142" height="142" rx="9" fill="#1e293b" stroke="#3b82f6" stroke-opacity="0.28"/>
-            <rect x="276" y="78" width="118" height="9" rx="2" fill="#475569"/>
-            <rect x="276" y="94" width="100" height="9" rx="2" fill="#475569"/>
-            <rect x="276" y="110" width="110" height="9" rx="2" fill="#475569"/>
-            <rect x="276" y="132" width="95" height="28" rx="7" fill="#2563eb"/>
-            <rect x="276" y="168" width="70" height="8" rx="2" fill="#34d399" opacity="0.5"/>
-          </svg>
+        <div class="mock-body mock-body--hero-illu">
+          <div class="hero-vista-sistema">
+            <img src="hero-sistema-resto-fadey.png" alt="Ilustración del panel: escritorio con KPIs y gráfico, salón con mesas y bloque de informes con métodos de pago. Cifras de ejemplo." width="1600" height="900" loading="eager" decoding="async" fetchpriority="high" />
+          </div>
         </div>
-      </div>
+        <figcaption class="hero-shot-note">Vista compuesta <strong style="color:#94a3b8">ilustrada</strong> (no es una captura de pantalla real): resume Escritorio, operación en salón/caja e informes, con cifras de ejemplo de alto volumen.</figcaption>
+      </figure>
     </div>
   </main>
 
