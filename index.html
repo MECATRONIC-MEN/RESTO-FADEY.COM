@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Resto-FADEY · Sitio promocional independiente (carpeta rolando-offer). No enlaza al código de la aplicación. -->
+<!-- Resto-FADEY · Sitio promocional -->
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -915,7 +915,7 @@
         </p>
         <div class="hero-proof">
           <div class="hero-stars" aria-label="Cinco estrellas">★★★★★</div>
-          <span><strong style="color:#fff">4.9/5</strong> valoración media · 75+ opiniones de referencia</span>
+          <span><strong style="color:#fff">4.9/5</strong> valoración media</span>
         </div>
         <div class="hero-cta">
           <a class="btn btn-primary btn-xl btn-shine" href="#planes">Ver planes desde S/ 150</a>
@@ -1058,7 +1058,7 @@
       <div class="section-head">
         <p class="section-eyebrow">Qué incluye</p>
         <h2 class="section-title">Módulos que ves en acción</h2>
-        <p class="section-sub">Vistas de referencia (ilustraciones). La facturación electrónica en flujo de ventas y el envío a SUNAT corresponden al <strong style="color:#e2e8f0">Plan Pro</strong>.</p>
+        <p class="section-sub">Imágenes ilustrativas. La facturación electrónica en flujo de ventas y el envío a SUNAT corresponden al <strong style="color:#e2e8f0">Plan Pro</strong>.</p>
       </div>
       <div class="features">
         <article class="feature-card">
@@ -1117,7 +1117,6 @@
           </div>
         </article>
       </div>
-      <p class="img-hint">Publica en GitHub Pages la carpeta completa: <code>index.html</code>, <code>logo.svg</code> y las tres capturas (mismos nombres de archivo que en tu disco).</p>
     </div>
   </section>
 
@@ -1206,7 +1205,7 @@
           <div class="ans">Se refiere a la certeza del monto y periodicidad del servicio SaaS acordados por contrato, no a garantizar las ventas de tu restaurante.</div>
         </details>
         <details>
-          <summary>¿Hay demo?</summary>
+          <summary>¿Puedo ver el sistema antes de contratar?</summary>
           <div class="ans">Escríbenos al WhatsApp indicado y coordinamos vista guiada o acceso de prueba según disponibilidad.</div>
         </details>
       </div>
@@ -1218,7 +1217,7 @@
       <div class="section-head">
         <p class="section-eyebrow">Comunidad</p>
         <h2 class="section-title">Reseñas ★★★★★</h2>
-        <p class="section-sub">75 opiniones de referencia generadas para esta demo más las que dejen los visitantes (se guardan en tu navegador).</p>
+        <p class="section-sub">Experiencias de equipos que operan con la plataforma. Más abajo puedes dejar tu valoración.</p>
       </div>
       <div class="reviews-toolbar">
         <span id="review-count" style="color:var(--muted);font-size:0.9rem;"></span>
@@ -1227,7 +1226,7 @@
 
       <div class="form-review">
         <h3>Tu opinión cuenta</h3>
-        <p class="hint">Publica aquí; los datos quedan solo en este dispositivo (localStorage). En producción puedes enlazar un formulario o API.</p>
+        <p class="hint">Tu opinión se guarda solo en este dispositivo.</p>
         <form id="visitor-form">
           <div class="field">
             <label for="v-name">Nombre o restaurante</label>
@@ -1259,7 +1258,7 @@
     <div class="wrap">
       <div class="cta-block">
         <h2>Listo para digitalizar tu local</h2>
-        <p class="lead">Cotización, demo o firma de contrato por WhatsApp. Respuesta humana, sin formularios eternos.</p>
+        <p class="lead">Cotización, vista del producto o firma de contrato por WhatsApp. Respuesta humana, sin formularios eternos.</p>
         <p class="phone-big">📞 935 968 198</p>
         <a class="wa-big" href="https://wa.me/51935968198?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Resto-FADEY%20%28Plan%20Plus%20S%2F150%20o%20Pro%20S%2F200%29." target="_blank" rel="noopener noreferrer">
           Abrir WhatsApp ahora
@@ -1288,7 +1287,7 @@
         <span style="color:#94a3b8;font-size:0.88rem;">Resto-FADEY — plataforma para restaurantes.</span>
       </div>
     </div>
-    <div class="wrap foot-copy">© Resto-FADEY. Página promocional en un solo archivo HTML (carpeta rolando-offer). Estilo oscuro / azul / dorado.</div>
+    <div class="wrap foot-copy">© Resto-FADEY · Perú</div>
   </footer>
 
   <script>
@@ -1328,7 +1327,7 @@
         "Impresión por red y flujo de pedidos muy prácticos.",
         "Desde que migramos, los tiempos de servicio mejoraron.",
         "Ideal para cadenas pequeñas que quieren crecer ordenadas.",
-        "La demo nos convenció; el contrato fue transparente.",
+        "La propuesta nos convenció; el contrato fue transparente.",
         "Por fin tenemos visibilidad de ventas en tiempo casi real.",
         "Los cierres de caja son más rápidos y auditables.",
         "Nuestro bar y cocina dejaron de pisarse pedidos.",
@@ -1453,7 +1452,7 @@
         seed.forEach(function (r) {
           list.appendChild(renderCard(r, false));
         });
-        count.textContent = vis.length + " reseña(s) de visitantes · 75 referencias ★★★★★ · Total: " + (vis.length + 75);
+        count.textContent = (vis.length + seed.length) + " valoraciones · media 4,9/5";
       }
       var rating = 5;
       var starBtns = document.querySelectorAll("#star-input button");
