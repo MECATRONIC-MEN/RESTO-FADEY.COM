@@ -689,7 +689,48 @@
     }
 
     /* Reseñas */
-    .reviews-toolbar { margin-bottom: 1rem; }
+    .reviews-toolbar {
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1.25rem;
+    }
+    .review-count-label { font-size: 0.9rem; color: var(--muted); }
+    .review-total-block {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem 0.65rem;
+    }
+    .review-total-heading { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+    .review-toolbar-stars {
+      color: var(--gold);
+      letter-spacing: 2px;
+      font-size: 1rem;
+      line-height: 1;
+    }
+    .review-avg-num { font-size: 0.85rem; color: var(--muted); }
+    .review-total-hero {
+      display: flex;
+      justify-content: center;
+      margin-top: 1.35rem;
+    }
+    .review-total-hero .review-total-block {
+      justify-content: center;
+      gap: 0.55rem 0.9rem;
+    }
+    .review-total-hero .review-total-heading {
+      font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+      font-weight: 700;
+    }
+    .review-total-hero .review-toolbar-stars {
+      font-size: clamp(1.5rem, 4.5vw, 2.15rem);
+      letter-spacing: 0.12em;
+    }
+    .review-total-hero .review-avg-num {
+      font-size: clamp(1rem, 2.4vw, 1.2rem);
+    }
     .review-grid {
       display: grid;
       gap: 0.75rem;
@@ -732,16 +773,39 @@
     }
     .review-card strong { font-size: 0.92rem; }
     .stars { color: var(--gold); letter-spacing: 1px; font-size: 0.9rem; }
-    .review-card .tag {
-      font-size: 0.62rem;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      color: #86efac;
-      background: rgba(34, 197, 94, 0.12);
-      padding: 0.2rem 0.45rem;
-      border-radius: 4px;
+    .review-del-ui {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
     }
-    .review-card .tag.visitor { color: #93c5fd; background: rgba(59, 130, 246, 0.15); }
+    .review-del-input {
+      width: 6.75rem;
+      padding: 0.28rem 0.5rem;
+      font-size: 0.8rem;
+      border-radius: 7px;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      background: #0b0f17;
+      color: var(--text);
+      font-family: inherit;
+    }
+    .review-del-input:focus {
+      outline: none;
+      border-color: rgba(248, 113, 113, 0.65);
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.15);
+    }
+    .btn-review-del {
+      font-size: 0.72rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      background: rgba(239, 68, 68, 0.28);
+      color: #fecaca;
+      font-weight: 600;
+      font-family: inherit;
+    }
+    .btn-review-del:hover { background: rgba(239, 68, 68, 0.4); }
     .review-card .txt { margin: 0; color: #cbd5e1; line-height: 1.5; grid-column: 1 / -1; }
     @media (min-width: 480px) {
       .review-card .txt { grid-column: 2; }
@@ -1438,11 +1502,18 @@
     <div class="wrap">
       <div class="section-head">
         <p class="section-eyebrow">Comunidad</p>
-        <h2 class="section-title">Reseñas ★★★★★</h2>
-        <p class="section-sub">Experiencias de equipos que operan con la plataforma. Más abajo puedes dejar tu valoración.</p>
+        <h2 class="section-title">Valoración de los usuarios que ya operan con Resto FADEY .app</h2>
+        <p class="section-sub">Deja tu valoración de 1 a 5 estrellas</p>
+        <div class="review-total-hero">
+          <div class="review-total-block">
+            <span class="review-total-heading">Valoración total</span>
+            <span id="review-avg-stars" class="review-toolbar-stars" role="img" aria-label=""></span>
+            <span id="review-avg-num" class="review-avg-num"></span>
+          </div>
+        </div>
       </div>
       <div class="reviews-toolbar">
-        <span id="review-count" style="color:var(--muted);font-size:0.9rem;"></span>
+        <span id="review-count" class="review-count-label"></span>
       </div>
       <div class="review-grid" id="review-list" aria-live="polite"></div>
 
@@ -1463,7 +1534,7 @@
               <button type="button" data-n="4" aria-label="4 estrellas">★</button>
               <button type="button" data-n="5" aria-label="5 estrellas">★</button>
               <input type="hidden" name="rating" id="v-rating" value="5" />
-              <span style="color:var(--muted);font-size:0.85rem;">Valoración de los usuarios</span>
+              <span style="color:var(--muted);font-size:0.85rem;">Deja tu valoración de 1 a 5 estrellas</span>
             </div>
           </div>
           <div class="field">
@@ -1514,57 +1585,655 @@
     <div class="wrap foot-copy">© Resto-FADEY · Perú · RUC 10600327327</div>
   </footer>
 
-  <script>
+    <script type="application/json" id="reviews-seed-data">
+[
+  {
+    "id": "s73",
+    "name": "Andrés Cornejo",
+    "rating": 5,
+    "text": "Interfaz clara; el equipo la adoptó en muy pocos días. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s71",
+    "name": "Héctor Campos",
+    "rating": 5,
+    "text": "Excelente para organizar comandas entre cocina y salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s69",
+    "name": "Mónica Yupanqui",
+    "rating": 5,
+    "text": "Nuestro bar y cocina dejaron de pisarse pedidos. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s67",
+    "name": "Hugo Zevallos",
+    "rating": 5,
+    "text": "Ideal para cadenas pequeñas que quieren crecer ordenadas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s65",
+    "name": "Natalia Sáenz",
+    "rating": 5,
+    "text": "Interfaz clara; el equipo la adoptó en muy pocos días. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s63",
+    "name": "Camila Cárdenas",
+    "rating": 5,
+    "text": "El tema oscuro ayuda en turnos largos frente a la pantalla. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s61",
+    "name": "Javier Ximeno",
+    "rating": 5,
+    "text": "Los pedidos delivery quedaron ordenados y sin confusiones. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s59",
+    "name": "Rosa Lozano",
+    "rating": 5,
+    "text": "Integración coherente entre mozos y cocina. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s57",
+    "name": "Andrea Yupanqui",
+    "rating": 5,
+    "text": "Excelente para organizar comandas entre cocina y salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s55",
+    "name": "Óscar Ponce",
+    "rating": 5,
+    "text": "Inversión que se nota desde la primera semana. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s53",
+    "name": "Lorena Silva",
+    "rating": 5,
+    "text": "Inversión que se nota desde la primera semana. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s51",
+    "name": "Alicia Núñez",
+    "rating": 5,
+    "text": "Recomendado para pollerías y locales con bar. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s49",
+    "name": "Alejandra Núñez",
+    "rating": 5,
+    "text": "La caja y las mesas en un solo lugar nos ahorró muchísimo tiempo. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s47",
+    "name": "Adriana Gálvez",
+    "rating": 5,
+    "text": "La propuesta nos convenció; el contrato fue transparente. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s45",
+    "name": "Francisco Torres",
+    "rating": 5,
+    "text": "Impresión por red y flujo de pedidos muy prácticos. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s43",
+    "name": "Álvaro Zapata",
+    "rating": 5,
+    "text": "Interfaz clara; el equipo la adoptó en muy pocos días. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s41",
+    "name": "Florencia Sáenz",
+    "rating": 5,
+    "text": "Por fin tenemos visibilidad de ventas en tiempo casi real. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s39",
+    "name": "Alejandra Ponce",
+    "rating": 5,
+    "text": "El tema oscuro ayuda en turnos largos frente a la pantalla. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-20",
+    "seed": true
+  },
+  {
+    "id": "s37",
+    "name": "Esther Silva",
+    "rating": 5,
+    "text": "Control de mesas impecable; menos errores en el salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-19",
+    "seed": true
+  },
+  {
+    "id": "s35",
+    "name": "Arturo Franco",
+    "rating": 5,
+    "text": "Soporte atento y sistema estable en horario punta. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-18",
+    "seed": true
+  },
+  {
+    "id": "s33",
+    "name": "Ana Figueroa",
+    "rating": 5,
+    "text": "Integración coherente entre mozos y cocina. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-17",
+    "seed": true
+  },
+  {
+    "id": "s31",
+    "name": "Carmen Cruz",
+    "rating": 5,
+    "text": "La propuesta nos convenció; el contrato fue transparente. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-16",
+    "seed": true
+  },
+  {
+    "id": "s29",
+    "name": "Lucero Gutiérrez",
+    "rating": 5,
+    "text": "Excelente para organizar comandas entre cocina y salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-15",
+    "seed": true
+  },
+  {
+    "id": "s27",
+    "name": "Javier Navarro",
+    "rating": 5,
+    "text": "La propuesta nos convenció; el contrato fue transparente. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-14",
+    "seed": true
+  },
+  {
+    "id": "s25",
+    "name": "Lorena Yáñez",
+    "rating": 5,
+    "text": "El tema oscuro ayuda en turnos largos frente a la pantalla. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-13",
+    "seed": true
+  },
+  {
+    "id": "s23",
+    "name": "Pablo Ureña",
+    "rating": 5,
+    "text": "Reportes útiles para el cierre sin planillas eternas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-12",
+    "seed": true
+  },
+  {
+    "id": "s21",
+    "name": "César Mendoza",
+    "rating": 5,
+    "text": "Los pedidos delivery quedaron ordenados y sin confusiones. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-11",
+    "seed": true
+  },
+  {
+    "id": "s19",
+    "name": "Juliana Lozano",
+    "rating": 5,
+    "text": "Integración coherente entre mozos y cocina. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-10",
+    "seed": true
+  },
+  {
+    "id": "s17",
+    "name": "Karina Tapia",
+    "rating": 5,
+    "text": "Inversión que se nota desde la primera semana. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-09",
+    "seed": true
+  },
+  {
+    "id": "s15",
+    "name": "Adriana Herrera",
+    "rating": 5,
+    "text": "Los cierres de caja son más rápidos y auditables. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-08",
+    "seed": true
+  },
+  {
+    "id": "s13",
+    "name": "Alejandra Delgado",
+    "rating": 5,
+    "text": "Por fin tenemos visibilidad de ventas en tiempo casi real. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-07",
+    "seed": true
+  },
+  {
+    "id": "s11",
+    "name": "Arturo Figueroa",
+    "rating": 5,
+    "text": "Reportes útiles para el cierre sin planillas eternas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-06",
+    "seed": true
+  },
+  {
+    "id": "s9",
+    "name": "Alicia Franco",
+    "rating": 5,
+    "text": "Desde que migramos, los tiempos de servicio mejoraron. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-05",
+    "seed": true
+  },
+  {
+    "id": "s7",
+    "name": "Verónica Franco",
+    "rating": 5,
+    "text": "Ideal para cadenas pequeñas que quieren crecer ordenadas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-04",
+    "seed": true
+  },
+  {
+    "id": "s5",
+    "name": "Silvia Miranda",
+    "rating": 5,
+    "text": "Control de mesas impecable; menos errores en el salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-03",
+    "seed": true
+  },
+  {
+    "id": "s3",
+    "name": "Álvaro Flores",
+    "rating": 5,
+    "text": "Nuestro bar y cocina dejaron de pisarse pedidos. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-02",
+    "seed": true
+  },
+  {
+    "id": "s1",
+    "name": "Lorena Yupanqui",
+    "rating": 5,
+    "text": "Los cierres de caja son más rápidos y auditables. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-04-01",
+    "seed": true
+  },
+  {
+    "id": "s74",
+    "name": "Elena Cruz",
+    "rating": 5,
+    "text": "Excelente para organizar comandas entre cocina y salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s72",
+    "name": "Camila Duarte",
+    "rating": 5,
+    "text": "Excelente para organizar comandas entre cocina y salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s70",
+    "name": "Andrea Mendoza",
+    "rating": 5,
+    "text": "Buen equilibrio entre potencia y facilidad de uso. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s68",
+    "name": "Roberto Jaramillo",
+    "rating": 5,
+    "text": "Reportes útiles para el cierre sin planillas eternas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s66",
+    "name": "Salvador Figueroa",
+    "rating": 5,
+    "text": "Por fin tenemos visibilidad de ventas en tiempo casi real. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s64",
+    "name": "Víctor Tapia",
+    "rating": 5,
+    "text": "Nuestro bar y cocina dejaron de pisarse pedidos. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s62",
+    "name": "Manuel Farías",
+    "rating": 5,
+    "text": "Interfaz clara; el equipo la adoptó en muy pocos días. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s60",
+    "name": "Álvaro Peña",
+    "rating": 5,
+    "text": "Los pedidos delivery quedaron ordenados y sin confusiones. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-31",
+    "seed": true
+  },
+  {
+    "id": "s58",
+    "name": "Gustavo León",
+    "rating": 5,
+    "text": "Buen equilibrio entre potencia y facilidad de uso. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-30",
+    "seed": true
+  },
+  {
+    "id": "s56",
+    "name": "Edgar Ochoa",
+    "rating": 5,
+    "text": "Reportes útiles para el cierre sin planillas eternas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-29",
+    "seed": true
+  },
+  {
+    "id": "s54",
+    "name": "Elisa Sánchez",
+    "rating": 5,
+    "text": "La propuesta nos convenció; el contrato fue transparente. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-28",
+    "seed": true
+  },
+  {
+    "id": "s52",
+    "name": "Teresa Farías",
+    "rating": 5,
+    "text": "Control de mesas impecable; menos errores en el salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-27",
+    "seed": true
+  },
+  {
+    "id": "s50",
+    "name": "Claudia Figueroa",
+    "rating": 5,
+    "text": "Inversión que se nota desde la primera semana. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-26",
+    "seed": true
+  },
+  {
+    "id": "s48",
+    "name": "Ana Rojas",
+    "rating": 5,
+    "text": "Integración coherente entre mozos y cocina. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-25",
+    "seed": true
+  },
+  {
+    "id": "s46",
+    "name": "Elena Campos",
+    "rating": 5,
+    "text": "El tema oscuro ayuda en turnos largos frente a la pantalla. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-24",
+    "seed": true
+  },
+  {
+    "id": "s44",
+    "name": "Eduardo Ávalos",
+    "rating": 5,
+    "text": "Los pedidos delivery quedaron ordenados y sin confusiones. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-23",
+    "seed": true
+  },
+  {
+    "id": "s42",
+    "name": "Sergio Mamani",
+    "rating": 5,
+    "text": "Por fin tenemos visibilidad de ventas en tiempo casi real. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-22",
+    "seed": true
+  },
+  {
+    "id": "s40",
+    "name": "Gonzalo Escobar",
+    "rating": 5,
+    "text": "El tema oscuro ayuda en turnos largos frente a la pantalla. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-21",
+    "seed": true
+  },
+  {
+    "id": "s38",
+    "name": "Elena Bermúdez",
+    "rating": 5,
+    "text": "El tema oscuro ayuda en turnos largos frente a la pantalla. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-20",
+    "seed": true
+  },
+  {
+    "id": "s36",
+    "name": "Patricia Cornejo",
+    "rating": 5,
+    "text": "La propuesta nos convenció; el contrato fue transparente. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-19",
+    "seed": true
+  },
+  {
+    "id": "s34",
+    "name": "Roberto Morales",
+    "rating": 5,
+    "text": "Reportes útiles para el cierre sin planillas eternas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-18",
+    "seed": true
+  },
+  {
+    "id": "s32",
+    "name": "Rosa León",
+    "rating": 5,
+    "text": "Buen equilibrio entre potencia y facilidad de uso. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-17",
+    "seed": true
+  },
+  {
+    "id": "s30",
+    "name": "Miguel Yupanqui",
+    "rating": 5,
+    "text": "Ideal para cadenas pequeñas que quieren crecer ordenadas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-16",
+    "seed": true
+  },
+  {
+    "id": "s28",
+    "name": "Cristina Vásquez",
+    "rating": 5,
+    "text": "Buen equilibrio entre potencia y facilidad de uso. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-15",
+    "seed": true
+  },
+  {
+    "id": "s26",
+    "name": "Hugo Ibarra",
+    "rating": 5,
+    "text": "La propuesta nos convenció; el contrato fue transparente. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-14",
+    "seed": true
+  },
+  {
+    "id": "s24",
+    "name": "Emilio Cornejo",
+    "rating": 5,
+    "text": "Ideal para cadenas pequeñas que quieren crecer ordenadas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-13",
+    "seed": true
+  },
+  {
+    "id": "s22",
+    "name": "Claudia Navarro",
+    "rating": 5,
+    "text": "Reportes útiles para el cierre sin planillas eternas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-12",
+    "seed": true
+  },
+  {
+    "id": "s20",
+    "name": "Andrés Chávez",
+    "rating": 5,
+    "text": "Recomendado para pollerías y locales con bar. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-11",
+    "seed": true
+  },
+  {
+    "id": "s18",
+    "name": "Edgar Flores",
+    "rating": 5,
+    "text": "Reportes útiles para el cierre sin planillas eternas. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-10",
+    "seed": true
+  },
+  {
+    "id": "s16",
+    "name": "Diego Silva",
+    "rating": 5,
+    "text": "Excelente para organizar comandas entre cocina y salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-09",
+    "seed": true
+  },
+  {
+    "id": "s14",
+    "name": "Salvador Vásquez",
+    "rating": 5,
+    "text": "Por fin tenemos visibilidad de ventas en tiempo casi real. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-08",
+    "seed": true
+  },
+  {
+    "id": "s12",
+    "name": "Paola Delgado",
+    "rating": 5,
+    "text": "Recomendado para pollerías y locales con bar. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-07",
+    "seed": true
+  },
+  {
+    "id": "s10",
+    "name": "Edgar Huamán",
+    "rating": 5,
+    "text": "Excelente para organizar comandas entre cocina y salón. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-06",
+    "seed": true
+  },
+  {
+    "id": "s8",
+    "name": "Héctor Valdez",
+    "rating": 5,
+    "text": "Por fin tenemos visibilidad de ventas en tiempo casi real. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-05",
+    "seed": true
+  },
+  {
+    "id": "s6",
+    "name": "Emilio Fuentes",
+    "rating": 5,
+    "text": "Recomendado para pollerías y locales con bar. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-04",
+    "seed": true
+  },
+  {
+    "id": "s4",
+    "name": "Pablo Flores",
+    "rating": 5,
+    "text": "Integración coherente entre mozos y cocina. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-03",
+    "seed": true
+  },
+  {
+    "id": "s2",
+    "name": "Patricia Medina",
+    "rating": 5,
+    "text": "Buen equilibrio entre potencia y facilidad de uso. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-02",
+    "seed": true
+  },
+  {
+    "id": "s0",
+    "name": "Martín Vega",
+    "rating": 5,
+    "text": "Integración coherente entre mozos y cocina. Muy satisfechos con Resto-FADEY.",
+    "at": "2026-03-01",
+    "seed": true
+  }
+]
+  </script>
+
+<script>
     (function () {
-      var FIRST = [
-        "María", "Carlos", "Lucía", "Diego", "Ana", "Pedro", "Rosa", "Luis", "Carmen", "Jorge",
-        "Patricia", "Miguel", "Sofía", "Andrés", "Elena", "Fernando", "Gabriela", "Ricardo", "Valeria", "Óscar",
-        "Daniela", "Roberto", "Claudia", "Héctor", "Mónica", "Alberto", "Natalia", "Francisco", "Paola", "Edgar",
-        "Juliana", "César", "Andrea", "Manuel", "Karina", "Raúl", "Diana", "Sergio", "Verónica", "Iván",
-        "Alejandra", "Gustavo", "Silvia", "Eduardo", "Teresa", "Felipe", "Mariana", "Pablo", "Lucero", "Arturo",
-        "Camila", "Rodrigo", "Isabel", "Martín", "Adriana", "Javier", "Ruth", "Álvaro", "Lorena", "Emilio",
-        "Cristina", "Bruno", "Elisa", "Víctor", "Nadia", "Tomás", "Jimena", "Salvador", "Alicia", "Rubén",
-        "Esther", "Gonzalo", "Mireya", "Hugo", "Florencia"
-      ];
-      var LAST = [
-        "Vargas", "Quispe", "Huamán", "Salazar", "Torres", "Mendoza", "Flores", "Rojas", "Castillo", "Silva",
-        "Reyes", "Morales", "Gutiérrez", "Paredes", "Cárdenas", "Navarro", "Espinoza", "Medina", "Ramírez", "Valdez",
-        "Aguilar", "Campos", "Fuentes", "Ortega", "Delgado", "Vega", "Cruz", "Herrera", "León", "Ponce",
-        "Sánchez", "Figueroa", "Montes", "Ibáñez", "Acosta", "Miranda", "Peña", "Ríos", "Soto", "Tapia",
-        "Ureña", "Vilca", "Yupanqui", "Zevallos", "Bermúdez", "Chávez", "Díaz", "Escobar", "Farías", "Gálvez",
-        "Hurtado", "Ibarra", "Jaramillo", "Kouri", "Lozano", "Mamani", "Núñez", "Ochoa", "Palacios", "Quiñones",
-        "Ramos", "Sáenz", "Tello", "Urquizo", "Vásquez", "Wong", "Ximeno", "Yáñez", "Zapata", "Ávalos",
-        "Bustamante", "Cornejo", "Duarte", "Enríquez", "Franco"
-      ];
-      var PHRASES = [
-        "Excelente para organizar comandas entre cocina y salón.",
-        "La caja y las mesas en un solo lugar nos ahorró muchísimo tiempo.",
-        "Interfaz clara; el equipo la adoptó en muy pocos días.",
-        "Los pedidos delivery quedaron ordenados y sin confusiones.",
-        "Reportes útiles para el cierre sin planillas eternas.",
-        "Soporte atento y sistema estable en horario punta.",
-        "Recomendado para pollerías y locales con bar.",
-        "Control de mesas impecable; menos errores en el salón.",
-        "Integración coherente entre mozos y cocina.",
-        "Buen equilibrio entre potencia y facilidad de uso.",
-        "El tema oscuro ayuda en turnos largos frente a la pantalla.",
-        "Impresión por red y flujo de pedidos muy prácticos.",
-        "Desde que migramos, los tiempos de servicio mejoraron.",
-        "Ideal para cadenas pequeñas que quieren crecer ordenadas.",
-        "La propuesta nos convenció; el contrato fue transparente.",
-        "Por fin tenemos visibilidad de ventas en tiempo casi real.",
-        "Los cierres de caja son más rápidos y auditables.",
-        "Nuestro bar y cocina dejaron de pisarse pedidos.",
-        "El plan Pro nos dejó listos para facturar sin duplicar trabajo.",
-        "Inversión que se nota desde la primera semana."
-      ];
-      function mulberry32(a) {
-        return function () {
-          var t = (a += 0x6d2b79f5);
-          t = Math.imul(t ^ (t >>> 15), t | 1);
-          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-        };
+      var SEEDED_REVIEWS = [];
+      try {
+        var _seedEl = document.getElementById("reviews-seed-data");
+        if (_seedEl && _seedEl.textContent) {
+          SEEDED_REVIEWS = JSON.parse(_seedEl.textContent.trim());
+        }
+      } catch (e) {
+        SEEDED_REVIEWS = [];
+      }
+      var HIDDEN_SEEDS = "rfoffer_hidden_seed_review_ids_v1";
+      var DELETE_CODE = "25879";
+      function loadHiddenSeedIds() {
+        try {
+          var a = JSON.parse(localStorage.getItem(HIDDEN_SEEDS) || "[]");
+          return Array.isArray(a) ? new Set(a) : new Set();
+        } catch (e) {
+          return new Set();
+        }
+      }
+      function saveHiddenSeedIds(set) {
+        try {
+          localStorage.setItem(HIDDEN_SEEDS, JSON.stringify(Array.from(set)));
+        } catch (err) { /* noop */ }
+      }
+      function seededReviews() {
+        var hidden = loadHiddenSeedIds();
+        return SEEDED_REVIEWS.filter(function (r) {
+          return !hidden.has(r.id);
+        });
+      }
+      function removeReviewById(id) {
+        if (!id) return;
+        var sid = String(id);
+        if (sid.indexOf("v") === 0) {
+          saveVisitor(loadVisitor().filter(function (x) {
+            return x.id !== id;
+          }));
+        } else {
+          var h = loadHiddenSeedIds();
+          h.add(id);
+          saveHiddenSeedIds(h);
+        }
       }
       function initials(name) {
         var p = String(name || "").trim().split(/\s+/);
@@ -1572,26 +2241,8 @@
         var b = (p[1] && p[1][0]) || "";
         return (a + b).toUpperCase();
       }
-      function seededReviews() {
-        var rnd = mulberry32(20260408);
-        var out = [];
-        for (var i = 0; i < 75; i++) {
-          var fn = FIRST[Math.floor(rnd() * FIRST.length)];
-          var ln = LAST[Math.floor(rnd() * LAST.length)];
-          var phrase = PHRASES[Math.floor(rnd() * PHRASES.length)];
-          out.push({
-            id: "s" + i,
-            name: fn + " " + ln,
-            rating: 5,
-            text: phrase + " Muy satisfechos con Resto-FADEY.",
-            at: "2025-" + String(1 + Math.floor(rnd() * 12)).padStart(2, "0") + "-" + String(1 + Math.floor(rnd() * 28)).padStart(2, "0"),
-            seed: true
-          });
-        }
-        return out;
-      }
-      var STORAGE = "rfoffer_visitor_reviews_v1";
-      var DRAFT = "rfoffer_review_draft_v1";
+      var STORAGE = "rfoffer_visitor_reviews_v2";
+      var DRAFT = "rfoffer_review_draft_v2";
       function saveDraft() {
         try {
           var name = document.getElementById("v-name").value;
@@ -1644,24 +2295,161 @@
         for (var i = 0; i < 5; i++) s += i < n ? "★" : "☆";
         return s;
       }
-      function renderCard(r, visitor) {
+      function starsFromAverage(avg) {
+        var s = "";
+        for (var i = 1; i <= 5; i++) {
+          s += avg >= i - 0.5 ? "★" : "☆";
+        }
+        return s;
+      }
+      function dateToLocalISO(d) {
+        return (
+          d.getFullYear() +
+          "-" +
+          String(d.getMonth() + 1).padStart(2, "0") +
+          "-" +
+          String(d.getDate()).padStart(2, "0")
+        );
+      }
+      var LETTER_RE = /[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]/;
+      function capWord(word) {
+        if (!word) return word;
+        return word
+          .split("-")
+          .map(function (p) {
+            if (!p) return p;
+            return p.charAt(0).toLocaleUpperCase("es-PE") + p.slice(1).toLocaleLowerCase("es-PE");
+          })
+          .join("-");
+      }
+      function toTitleCaseWords(s) {
+        return String(s || "")
+          .trim()
+          .replace(/\s+/g, " ")
+          .split(" ")
+          .filter(Boolean)
+          .map(capWord)
+          .join(" ");
+      }
+      function capitalizeFirstLetter(s) {
+        s = String(s || "").trim();
+        if (!s) return s;
+        var i = 0;
+        while (i < s.length && !LETTER_RE.test(s[i])) i++;
+        if (i >= s.length) return s;
+        return (
+          s.slice(0, i) +
+          s[i].toLocaleUpperCase("es-PE") +
+          s.slice(i + 1).toLocaleLowerCase("es-PE")
+        );
+      }
+      function formatReviewDate(at) {
+        if (!at) return "";
+        var s = String(at).trim();
+        if (/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+          var p = s.split("-");
+          var dt = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+          if (!isNaN(dt.getTime())) {
+            return dt.toLocaleDateString("es-PE", { year: "numeric", month: "short", day: "numeric" });
+          }
+        }
+        return at;
+      }
+      function renderCard(r) {
         var div = document.createElement("div");
         div.className = "review-card";
-        var ini = initials(r.name);
+        var displayName = toTitleCaseWords(r.name);
+        var displayText = capitalizeFirstLetter(r.text);
+        var ini = initials(displayName);
         div.innerHTML =
           '<div class="review-av"></div><div class="review-main">' +
-          '<div class="meta"><strong></strong><span class="stars"></span><span class="tag"></span></div></div>' +
+          '<div class="meta"><strong></strong><span class="stars"></span></div></div>' +
           '<p class="txt"></p><p class="date"></p>';
         div.querySelector(".review-av").textContent = ini;
-        div.querySelector("strong").textContent = r.name;
+        div.querySelector("strong").textContent = displayName;
         var st = div.querySelector(".stars");
         st.textContent = stars(r.rating);
         st.setAttribute("aria-label", r.rating + " de 5");
-        var tag = div.querySelector(".tag");
-        tag.textContent = visitor ? "Visita web" : "Cliente verificado";
-        if (visitor) tag.classList.add("visitor");
-        div.querySelector(".txt").textContent = r.text;
-        div.querySelector(".date").textContent = r.at || "";
+        div.querySelector(".txt").textContent = displayText;
+        div.querySelector(".date").textContent = formatReviewDate(r.at) || "";
+        div.dataset.reviewId = r.id;
+        (function attachSecretDelete(card, row) {
+          var taps = 0;
+          var lastTap = 0;
+          var gapMs = 2600;
+          card.addEventListener("click", function (e) {
+            if (card.querySelector(".review-del-ui")) {
+              if (e.target.closest(".review-del-ui")) return;
+              return;
+            }
+            var now = Date.now();
+            if (now - lastTap > gapMs) taps = 0;
+            lastTap = now;
+            taps++;
+            if (taps < 5) return;
+            taps = 0;
+            var starsEl = card.querySelector(".stars");
+            if (!starsEl || starsEl.style.display === "none") return;
+            starsEl.style.display = "none";
+            var ui = document.createElement("span");
+            ui.className = "review-del-ui";
+            ui.setAttribute("role", "group");
+            ui.setAttribute("aria-label", "Eliminar reseña");
+            var inp = document.createElement("input");
+            inp.type = "text";
+            inp.className = "review-del-input";
+            inp.maxLength = 8;
+            inp.autocomplete = "off";
+            inp.inputMode = "numeric";
+            inp.placeholder = "Código";
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "btn-review-del";
+            btn.textContent = "Borrar";
+            ui.appendChild(inp);
+            ui.appendChild(btn);
+            starsEl.parentNode.insertBefore(ui, starsEl.nextSibling);
+            function cancelDel() {
+              ui.remove();
+              starsEl.style.display = "";
+              inp.value = "";
+            }
+            function attemptDel() {
+              if (String(inp.value).trim() === DELETE_CODE) {
+                removeReviewById(row.id);
+                renderAll();
+                return;
+              }
+              inp.value = "";
+              inp.placeholder = "Incorrecto";
+              setTimeout(function () {
+                inp.placeholder = "Código";
+              }, 1600);
+            }
+            btn.addEventListener("click", function (ev) {
+              ev.stopPropagation();
+              attemptDel();
+            });
+            inp.addEventListener("keydown", function (ev) {
+              if (ev.key === "Enter") {
+                ev.preventDefault();
+                ev.stopPropagation();
+                attemptDel();
+              }
+              if (ev.key === "Escape") {
+                ev.preventDefault();
+                ev.stopPropagation();
+                cancelDel();
+              }
+            });
+            inp.addEventListener("click", function (ev) {
+              ev.stopPropagation();
+            });
+            setTimeout(function () {
+              inp.focus();
+            }, 0);
+          });
+        })(div, r);
         return div;
       }
       function renderAll() {
@@ -1669,14 +2457,35 @@
         var vis = loadVisitor();
         var list = document.getElementById("review-list");
         var count = document.getElementById("review-count");
+        var avgStarsEl = document.getElementById("review-avg-stars");
+        var avgNumEl = document.getElementById("review-avg-num");
         list.innerHTML = "";
         vis.forEach(function (r) {
-          list.appendChild(renderCard(r, true));
+          list.appendChild(renderCard(r));
         });
         seed.forEach(function (r) {
-          list.appendChild(renderCard(r, false));
+          list.appendChild(renderCard(r));
         });
-        count.textContent = (vis.length + seed.length) + " valoraciones · media 4,9/5";
+        var totalCount = vis.length + seed.length;
+        var all = vis.concat(seed);
+        var sum = 0;
+        all.forEach(function (r) {
+          sum += Number(r.rating) || 0;
+        });
+        var avg = totalCount ? sum / totalCount : 0;
+        count.textContent = totalCount + " valoraciones";
+        if (avgStarsEl) {
+          avgStarsEl.textContent = starsFromAverage(avg);
+          avgStarsEl.setAttribute(
+            "aria-label",
+            totalCount
+              ? "Promedio " + avg.toFixed(1).replace(".", ",") + " de 5"
+              : "Sin valoraciones"
+          );
+        }
+        if (avgNumEl) {
+          avgNumEl.textContent = totalCount ? "· media " + avg.toFixed(1).replace(".", ",") + "/5" : "";
+        }
       }
       var rating = 5;
       var starBtns = document.querySelectorAll("#star-input button");
@@ -1699,8 +2508,8 @@
       document.getElementById("v-text").addEventListener("input", scheduleDraftSave);
       document.getElementById("visitor-form").addEventListener("submit", function (e) {
         e.preventDefault();
-        var name = document.getElementById("v-name").value.trim();
-        var text = document.getElementById("v-text").value.trim();
+        var name = toTitleCaseWords(document.getElementById("v-name").value);
+        var text = capitalizeFirstLetter(document.getElementById("v-text").value.trim());
         var r = Number(document.getElementById("v-rating").value) || 5;
         if (!name || !text) return;
         var now = new Date();
@@ -1709,7 +2518,7 @@
           name: name,
           rating: Math.min(5, Math.max(1, r)),
           text: text,
-          at: now.toLocaleDateString("es-PE", { year: "numeric", month: "short", day: "numeric" })
+          at: dateToLocalISO(now)
         };
         var vis = loadVisitor();
         vis.unshift(entry);
